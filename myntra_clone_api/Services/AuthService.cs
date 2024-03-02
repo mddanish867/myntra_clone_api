@@ -20,13 +20,14 @@ namespace myntra_clone_api.Services
         private readonly TwilioConfig _twilioConfig;
         private readonly Random _random;
         private readonly ILogger _logger;
-        private readonly Dictionary<string, string> _otpStorage = new Dictionary<string, string>();
+        private readonly Dictionary<string, (string otp, DateTime expirationTime)> _otpStorage;
+
 
         public AuthService(IOptions<TwilioConfig> twilioConfig)
         {
             _twilioConfig = twilioConfig.Value;
             _random = new Random();
-            //_otpStorage = new Dictionary<string, string>();
+            _otpStorage = new Dictionary<string, (string otp, DateTime expirationTime)>();
         }
 
         public string GenerateOTP()
@@ -35,13 +36,16 @@ namespace myntra_clone_api.Services
             return _random.Next(1000, 9999).ToString();
         }
 
-        public void SendOTPViaSMS(string phoneNumber, string otp)
+        public string SendOTPViaSMS(string phoneNumber, string otp)            
         {
-            var messageBody = $"your OTP for authentiation: {otp}";
+            // Set OTP Expiration time
+            var expirationTime = DateTime.Now.AddMilliseconds(10000);
+            _otpStorage[phoneNumber] = (otp, expirationTime);
 
+            var messageBody = $"your OTP for authentiation: {otp}";
             // Use Twilio API to send SMS with the generated OTP          
-            var accountSid = "AC851567489afefff59ce7e7927f4b192d";
-            var authToken = "92a215c1ae5f7006b50d59a55ef29bea";            
+            var accountSid = "ACb434d59ce46d2e6b2aff6524f52988b8";
+            var authToken = "f2826592e30a4a70a678c6cee82fa6aa";            
 
 
             TwilioClient.Init(accountSid, authToken);
@@ -51,33 +55,48 @@ namespace myntra_clone_api.Services
                 to: new PhoneNumber(phoneNumber)
                 );
         
-            Console.WriteLine(messageResult.AccountSid);
+            return messageResult.AccountSid;
         }
 
         public bool VerifyOTP(string phoneNumber, string otp) {
-            var otp1 = GenerateOTP();
-            _otpStorage[phoneNumber] = otp; 
-            // OTP verification logic
-            if (_otpStorage.TryGetValue(phoneNumber, out var storedOtp) && storedOtp == otp)
+      
+            if (_otpStorage.ContainsKey(phoneNumber))
             {
-                _otpStorage.Remove(phoneNumber);
-                return true;
+                if (_otpStorage.TryGetValue(phoneNumber, out var storedOTP))
+                {
+                    // Check if OTP is still valid
+                    if (DateTime.Now <= storedOTP.expirationTime)
+                    {
+                        if (storedOTP.otp == otp)
+                        {
+                            // Remove OTP after successfull verification
+                            _otpStorage.Remove(phoneNumber);
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        // OTP has expired. remove it from storage
+                        _otpStorage.Remove(phoneNumber);
+                    }
+                }
             }
         return false;
         }
 
-        public string GenerateToken()
+        public string GenerateToken(string phoneNumber)
         {
             // Implement JWT Toek generation logic
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("acjvpxsveewamofbevfjxupqobwvobnyvuwdfinydpfcasqojffclclsyywpjapkqxotkrubfileplldejofmoikdzalpelvodrxgpjwnfytbeskcyfpuxfuajivhlhk"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var number = phoneNumber;
             var token = new
                 JwtSecurityToken(
                 issuer: "https://localhost:7151",
                 audience: "https://localhost:7151",
-                //Toekn expire time
+                //Token expire time
                 expires: DateTime.Now.AddMinutes(15),
-                signingCredentials: credentials
+                signingCredentials: credentials         
                 );
             var tokenHandler = new JwtSecurityTokenHandler();
             return tokenHandler.WriteToken(token);

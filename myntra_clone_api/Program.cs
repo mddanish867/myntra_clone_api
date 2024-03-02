@@ -3,29 +3,26 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using myntra_clone_api.Data;
-using Microsoft.OpenApi.Models;
 using System.Text;
 using myntra_clone_api.Models;
 using myntra_clone_api.Twilio;
-using FluentAssertions.Common;
 using myntra_clone_api.Services;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Hosting;
-
+using Serilog;
+using myntra_clone_api.Mappings;
+using myntra_clone_api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 // Z5MX3EJ9L1YR8SYMKQL58XGQ
-// Account SID: AC851567489afefff59ce7e7927f4b192d
-// Auth Token: 92a215c1ae5f7006b50d59a55ef29bea
-// Twilio Phone number: +13612034607
 
-// Add DbContext class to connect with database and reate connectin string
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//options.UseSqlServer(builder.Configuration.GetConnectionString("MyntraCloneDbConnection")));
-
-
+// Serilog Console to get information on console window
+var logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    // To get log in text file opion above line sufficient ot handle the log
+    .WriteTo.File("Logs/Myntra_Clone_Log.txt", rollingInterval: RollingInterval.Minute)
+    .MinimumLevel.Information()
+    .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -46,8 +43,16 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 // Start add Identity for roles
 var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).Build();
 builder.Services.Configure<TwilioConfig>(configuration.GetSection("Twilio"));
-builder.Services.AddScoped<IAuthService, AuthService>();
 
+// Add Services
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoriesService, CategoriesService>();
+builder.Services.AddScoped<IProductSpecificationService, ProductSpecificationService>();
+builder.Services.AddScoped<IPromotionsService, PromotionsService>();
+
+// Injectd AutoMapper
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 // Start Pass the password validation coz EF have some password criteia
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -77,11 +82,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 
-        
-
-
-
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -96,7 +96,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Global exception handler
+app.UseMiddleware<ExceptionHandlerMiddleware>();
+
 app.UseHttpsRedirection();
+app.UseCors(o => o.AllowAnyHeader()
+.AllowAnyMethod()
+.AllowAnyOrigin()
+.WithExposedHeaders("*"));
+
+// Authentication
+app.UseAuthentication();
 
 app.UseAuthorization();
 

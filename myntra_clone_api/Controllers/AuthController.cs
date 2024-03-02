@@ -21,8 +21,7 @@ namespace myntra_clone_api.Controllers
         {
             var otp = _authService.GenerateOTP();
             _authService.SendOTPViaSMS(phonNumber, otp);
-            // Insert otp into _storedOtp
-            
+         
             return Ok(new
             {
                 Message = "OTP sent successfully"
@@ -34,7 +33,7 @@ namespace myntra_clone_api.Controllers
         {
             if (_authService.VerifyOTP(phoneNumber, otp))
             {
-                var token = _authService.GenerateToken();
+                var token = _authService.GenerateToken(phoneNumber);
                 return Ok(new
                 {
                     Token = token

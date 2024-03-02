@@ -3,8 +3,8 @@
     public interface IAuthService
     {
         string GenerateOTP();
-        void SendOTPViaSMS(string phoneNumber, string otp);
+        string SendOTPViaSMS(string phoneNumber, string otp);
         bool VerifyOTP(string phoneNumber, string otp);
-        string GenerateToken();
+        string GenerateToken(string phoneNumber);
     }
 }
