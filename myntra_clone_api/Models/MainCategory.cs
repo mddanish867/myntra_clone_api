@@ -4,7 +4,7 @@ namespace myntra_clone_api.Models
 {
     public class MainCategory
     {
-        [Required]
+        [Key]
         public int MainCategoryId { get; set; }
         public string MainCategoryName { get; set; }
     }

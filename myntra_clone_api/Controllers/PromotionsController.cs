@@ -29,8 +29,8 @@ namespace myntra_clone_api.Controllers
         }
 
         [HttpGet]
-        [Route("all_category")]
-        public IActionResult GetPromotionAsync([FromQuery] string promotionType)
+        [Route("all_promotions")]
+        public IActionResult GetCategoryAsync([FromQuery] string promotionType)
         {
             try
             {
@@ -42,9 +42,9 @@ namespace myntra_clone_api.Controllers
                 {
                     return NotFound();
                 }
-                var promotionDto = mapper.Map<IEnumerable<PromotionsDto>>(promotions);
+                var promotionsDto = mapper.Map<IEnumerable<PromotionsDto>>(promotions);
 
-                return Ok(promotionDto);
+                return Ok(promotionsDto);
             }
             catch (Exception ex)
             {

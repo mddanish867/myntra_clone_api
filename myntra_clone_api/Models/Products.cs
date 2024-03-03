@@ -17,9 +17,7 @@ namespace myntra_clone_api.Models
         public bool IsCOD { get; set; }
         public double Rating { get; set; }
         public double OriginalPrice { get; set; }
-        public double DiscountedPrice { get; set; }
-        public string Color { get; set; }
-        public string Size { get; set; }
+        public double DiscountedPrice { get; set; }       
         public string Sellers { get; set; }
         public string ProductDetails { get; set; }
         public string SizeFit { get; set; }

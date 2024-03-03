@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using myntra_clone_api.Data;
 using myntra_clone_api.Models;
+using myntra_clone_api.Models.DTO;
 
 namespace myntra_clone_api.Services
 {
@@ -17,8 +20,7 @@ namespace myntra_clone_api.Services
             if (!string.IsNullOrEmpty(promotionType))
             {
                 query = query.Where(x => x.PromotionType == (promotionType));
-            }
-            
+            }            
             return query.ToList();
         }
 
