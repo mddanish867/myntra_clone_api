@@ -11,6 +11,30 @@ namespace myntra_clone_api.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            CreateAspNetRoles(migrationBuilder);
+            CreateAspNetUsers(migrationBuilder);
+            CreateAspNetRoleClaims(migrationBuilder);
+            CreateAspNetUserClaims(migrationBuilder);
+            CreateAspNetUserLogins(migrationBuilder);
+            CreateAspNetUserRoles(migrationBuilder);
+            CreateAspNetUserTokens(migrationBuilder);
+            CreateIndexes(migrationBuilder);
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(name: "AspNetUserTokens");
+            migrationBuilder.DropTable(name: "AspNetUserRoles");
+            migrationBuilder.DropTable(name: "AspNetUserLogins");
+            migrationBuilder.DropTable(name: "AspNetUserClaims");
+            migrationBuilder.DropTable(name: "AspNetRoleClaims");
+            migrationBuilder.DropTable(name: "AspNetUsers");
+            migrationBuilder.DropTable(name: "AspNetRoles");
+        }
+
+        private static void CreateAspNetRoles(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -24,7 +48,10 @@ namespace myntra_clone_api.Migrations
                 {
                     table.PrimaryKey("PK_AspNetRoles", x => x.Id);
                 });
+        }
 
+        private static void CreateAspNetUsers(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.CreateTable(
                 name: "AspNetUsers",
                 columns: table => new
@@ -50,7 +77,10 @@ namespace myntra_clone_api.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                 });
+        }
 
+        private static void CreateAspNetRoleClaims(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
@@ -71,7 +101,10 @@ namespace myntra_clone_api.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+        }
 
+        private static void CreateAspNetUserClaims(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
@@ -92,7 +125,10 @@ namespace myntra_clone_api.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+        }
 
+        private static void CreateAspNetUserLogins(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.CreateTable(
                 name: "AspNetUserLogins",
                 columns: table => new
@@ -112,7 +148,10 @@ namespace myntra_clone_api.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+        }
 
+        private static void CreateAspNetUserRoles(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.CreateTable(
                 name: "AspNetUserRoles",
                 columns: table => new
@@ -136,7 +175,10 @@ namespace myntra_clone_api.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+        }
 
+        private static void CreateAspNetUserTokens(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.CreateTable(
                 name: "AspNetUserTokens",
                 columns: table => new
@@ -156,7 +198,10 @@ namespace myntra_clone_api.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+        }
 
+        private static void CreateIndexes(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -195,31 +240,6 @@ namespace myntra_clone_api.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-        }
-
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "AspNetRoleClaims");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserClaims");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserLogins");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserRoles");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
         }
     }
 }
