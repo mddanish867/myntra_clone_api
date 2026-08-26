@@ -2641,13 +2641,15 @@ namespace myntra_clone_api.Data
             var promotions = new List<Promotions>
                 {
                 new Promotions()
-                {
-                    PromoionId = 29,
-                    PromotionType = "SHOP BY CATEGORY",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/babe0d1a-b7fe-4b36-8a98-b275523963721690787339222-Shop-By-Category_HP-4_14.jpg",
-                    PromotionMainCategory="Kids",
-                    PromotionCategory="",
-                    PromotionSubCategory="",
+{
+    PromoionId = 29,
+    PromotionType = "SHOP BY CATEGORY",
+    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/" +
+                   "babe0d1a-b7fe-4b36-8a98-b275523963721690787339222-Shop-By-Category_HP-4_14.jpg",
+    PromotionMainCategory="Kids",
+    PromotionCategory="",
+    PromotionSubCategory="",
+}
                     PromotionDiscount="50",
                     PromotionBrands=""
                 },
