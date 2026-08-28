@@ -2843,21 +2843,12 @@ namespace myntra_clone_api.Data
                     PromotionImage="https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/" +
                                    "assets/images/2023/7/31/46090f9c-e337-4a58-9d67-16bf4b977c6f1690787339358-Shop-By-Category_HP-4_32.jpg",
                     PromotionMainCategory="",
-                    PromotionCategory="",
-                    PromotionSubCategory="",
-                    PromotionDiscount="",
-                    PromotionBrands=""
-                },
-                    PromoionId = 48,
-                    PromotionType = "SHOP BY CATEGORY",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/89e0a0ee-225d-4880-a761-6aa895d252871690787338993-Shop-By-Category_HP-4_33.jpg",
-                    PromotionMainCategory="Men",
-                    PromotionCategory="Bags & Backpacks",
-                    PromotionSubCategory="",
-                    PromotionDiscount="30",
-                    PromotionBrands=""
-new Promotions()
-{
+PromotionImage="https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/89e0a0ee-225d-4880-a761-6aa895d252871690787338993-Shop-By-Category_HP-4_33.jpg",
+PromotionMainCategory="Men",
+PromotionCategory="Bags & Backpacks",
+PromotionSubCategory="",
+PromotionDiscount="30",
+PromotionBrands=""
     PromoionId = 49,
     PromotionType = "SHOP BY CATEGORY",
     PromotionImage="https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/82cdf918-9ad9-41fa-a5a7-c4c86fbad90c1690787338876-Shop-By-Category_HP-4_" + "34.jpg",
