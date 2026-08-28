@@ -3165,17 +3165,17 @@ new Promotions()
                     PromotionSubCategory="",
                     PromotionDiscount="70",
                     PromotionBrands=""
-                },
-                 new Promotions()
-                    {
-                        PromoionId = 24,
-                        PromotionType = "SHOP BY CATEGORY",
-                        PromotionImage = "https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/19755254-9c13-40a3-9cab-2bb9714391ab1690787339274-Shop-By-Category_HP-4_" +
-                        "10.jpg",
-                        PromotionMainCategory="Women",
-                        PromotionCategory="Innerwear & Sleepwear",
-                        PromotionSubCategory="",
-                    PromotionDiscount="70",
+```csharp
+{
+    PromoionId = 24,
+    PromotionType = "SHOP BY CATEGORY",
+    PromotionImage = "https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/19755254-9c13-40a3-9cab-2bb9714391ab1690787339274-Shop-By-Category_HP-4_",
+    PromotionMainCategory = "Women",
+    PromotionCategory = "Innerwear & Sleepwear",
+    PromotionSubCategory = "",
+    PromotionDiscount = "70",
+}
+```
                     PromotionBrands=""
                 },
                  new Promotions()
