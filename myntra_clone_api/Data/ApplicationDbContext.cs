@@ -2630,35 +2630,18 @@ namespace myntra_clone_api.Data
                     SpecificationKey = "Weave Type",
                     SpecificationValue = "Knitted",
                     ProductId = 1
-                },
-
-
-            };
-            // Seed product specification to database
-            modelBuilder.Entity<ProductSpecification>().HasData(productSpecifications);
-
-            // Seed the data for product promotions
-            var promotions = new List<Promotions>
-                {
-                new Promotions()
-                {
-                    PromoionId = 29,
-                    PromotionType = "SHOP BY CATEGORY",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/babe0d1a-b7fe-4b36-8a98-b275523963721690787339222-Shop-By-Category_HP-4_14.jpg",
-                    PromotionMainCategory="Kids",
-                    PromotionCategory="",
-                    PromotionSubCategory="",
-                    PromotionDiscount="50",
-                    PromotionBrands=""
-                },
-                new Promotions()
-                {
-                    PromoionId = 30,
-                    PromotionType = "SHOP BY CATEGORY",
-                    PromotionImage = "https://assets.myntassets.com/" +
-                                     "f_webp,w_163,c_limit,fl_progressive,dpr_2.0/" +
-                                     "assets/images/2023/7/31/3c2095db-905a-4346-9712-2fac7bcbbbd71690787339011-Shop-By-Category_HP-4_15.jpg",
-                    PromotionMainCategory="Men",
+                     new Promotions()
+                     {
+                         PromoionId = 29,
+                         PromotionType = "SHOP BY CATEGORY",
+                         PromotionImage = "https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/" +
+                                          "assets/images/2023/7/31/babe0d1a-b7fe-4b36-8a98-b275523963721690787339222-Shop-By-Category_HP-4_14.jpg",
+                         PromotionMainCategory="Kids",
+                         PromotionCategory="",
+                         PromotionSubCategory="",
+                         PromotionDiscount="50",
+                         PromotionBrands=""
+                     },
                     PromotionCategory="Footwear",
                     PromotionSubCategory="",
                     PromotionDiscount="50",
@@ -2668,7 +2651,8 @@ namespace myntra_clone_api.Data
                 {
                     PromoionId = 31,
                     PromotionType = "SHOP BY CATEGORY",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/c1c8027f-1a22-4a0b-8be2-848edab298cf1690787339044-Shop-By-Category_HP-4_16.jpg",
+                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/" +
+                                   "c1c8027f-1a22-4a0b-8be2-848edab298cf1690787339044-Shop-By-Category_HP-4_16.jpg",
                     PromotionMainCategory="Women",
                     PromotionCategory="Footwear",
                     PromotionSubCategory="",
@@ -2679,7 +2663,8 @@ namespace myntra_clone_api.Data
                 {
                     PromoionId = 32,
                     PromotionType = "SHOP BY CATEGORY",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/278917b5-1658-4c2c-b122-f623b1d909701690787339290-Shop-By-Category_HP-4_17.jpg",
+                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/" +
+                                   "278917b5-1658-4c2c-b122-f623b1d909701690787339290-Shop-By-Category_HP-4_17.jpg",
                     PromotionMainCategory="Men",
                     PromotionCategory="",
                     PromotionSubCategory="Wallets,Belts",
@@ -2726,7 +2711,8 @@ namespace myntra_clone_api.Data
                 {
                     PromoionId = 36,
                     PromotionType = "SHOP BY CATEGORY",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/90dcb992-9fb4-4208-8249-aa1a01b2851d1690787339476-Shop-By-Category_HP-4_21.jpg",
+                    PromotionImage = "https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/" +
+                                     "assets/images/2023/7/31/90dcb992-9fb4-4208-8249-aa1a01b2851d1690787339476-Shop-By-Category_HP-4_21.jpg",
                     PromotionMainCategory="Women",
                     PromotionCategory="Handbags, Bags & Wallets",
                     PromotionSubCategory="",
@@ -2757,39 +2743,41 @@ namespace myntra_clone_api.Data
                     PromotionSubCategory="",
                     PromotionDiscount="80",
                     PromotionBrands=""
-                },
-                new Promotions()
-                {
-                    PromoionId = 39,
-                    PromotionType = "SHOP BY CATEGORY",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/6aa501b3-ce05-48f5-96fe-ecb64682dbc71690787339409-Shop-By-Category_HP-4_24.jpg",
-                    PromotionMainCategory="Women",
-                    PromotionCategory="Plus Size",
-                    PromotionSubCategory="",
-                    PromotionDiscount="60",
-                    PromotionBrands=""
-                },
-                new Promotions()
-                {
-                    PromoionId = 40,
-                    PromotionType = "SHOP BY CATEGORY",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/b6e15609-4f52-44db-80c1-2a955fd4ac6e1690787339341-Shop-By-Category_HP-4_25.jpg",
-                    PromotionMainCategory="Men",
-                    PromotionCategory="Plus Size",
-                    PromotionSubCategory="",
-                    PromotionDiscount="60",
-                    PromotionBrands=""
-                },
-                new Promotions()
-                {
-                    PromoionId = 41,
-                    PromotionType = "SHOP BY CATEGORY",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/7916724b-be74-4920-b58d-ada0617cdee91690787339392-Shop-By-Category_HP-4_26.jpg",
-                    PromotionMainCategory="Men",
-                    PromotionCategory="Smart Wearables",
-                    PromotionSubCategory="",
-                    PromotionDiscount="80",
-                    PromotionBrands=""
+                 },
+                 new Promotions()
+                 {
+                     PromoionId = 39,
+                     PromotionType = "SHOP BY CATEGORY",
+                     PromotionImage = "https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/" +
+                                      "assets/images/2023/7/31/6aa501b3-ce05-48f5-96fe-ecb64682dbc71690787339409-Shop-By-Category_HP-4_24.jpg",
+                     PromotionMainCategory="Women",
+                     PromotionCategory="Plus Size",
+                     PromotionSubCategory="",
+                     PromotionDiscount="60",
+                     PromotionBrands=""
+                 },
+                 new Promotions()
+                 {
+                     PromoionId = 40,
+                     PromotionType = "SHOP BY CATEGORY",
+                     PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/" +
+                                     "b6e15609-4f52-44db-80c1-2a955fd4ac6e1690787339341-Shop-By-Category_HP-4_25.jpg",
+                     PromotionMainCategory="Men",
+                     PromotionCategory="Plus Size",
+                     PromotionSubCategory="",
+                     PromotionDiscount="60",
+                     PromotionBrands=""
+{
+    PromoionId = 41,
+    PromotionType = "SHOP BY CATEGORY",
+    PromotionImage = "https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/" +
+                     "7916724b-be74-4920-b58d-ada0617cdee91690787339392-Shop-By-Category_HP-4_26.jpg",
+    PromotionMainCategory = "Men",
+    PromotionCategory = "Smart Wearables",
+    PromotionSubCategory = "",
+    PromotionDiscount = "80",
+    PromotionBrands = ""
+}
                 },
                 new Promotions()
                 {
@@ -2807,7 +2795,8 @@ namespace myntra_clone_api.Data
                 {
                     PromoionId = 43,
                     PromotionType = "SHOP BY CATEGORY",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/76932333-b792-4f54-983c-45aaf70e04ef1690787338936-Shop-By-Category_HP-4_28.jpg",
+                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/" +
+                                   "assets/images/2023/7/31/76932333-b792-4f54-983c-45aaf70e04ef1690787338936-Shop-By-Category_HP-4_28.jpg",
                     PromotionMainCategory="Women",
                     PromotionCategory="Western Wear",
                     PromotionSubCategory="Blazers & Waistcoats",
@@ -2818,7 +2807,8 @@ namespace myntra_clone_api.Data
                 {
                     PromoionId = 44,
                     PromotionType = "SHOP BY CATEGORY",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/a351ad62-c1d1-4bb4-9967-d3966f8446521690787338974-Shop-By-Category_HP-4_29.jpg",
+                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/" +
+                                   "assets/images/2023/7/31/a351ad62-c1d1-4bb4-9967-d3966f8446521690787338974-Shop-By-Category_HP-4_29.jpg",
                     PromotionMainCategory="Men",
                     PromotionCategory="Sunglasses & Frames",
                     PromotionSubCategory="",
@@ -2829,7 +2819,8 @@ namespace myntra_clone_api.Data
                 {
                     PromoionId = 45,
                     PromotionType = "SHOP BY CATEGORY",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/130ceab4-ac68-42c5-a9f4-478ba7f903db1690787339061-Shop-By-Category_HP-4_30.jpg",
+                    PromotionImage = "https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/" +
+                                     "assets/images/2023/7/31/130ceab4-ac68-42c5-a9f4-478ba7f903db1690787339061-Shop-By-Category_HP-4_30.jpg",
                     PromotionMainCategory="Men",
                     PromotionCategory="Topwear",
                     PromotionSubCategory="Formal Shirts",
@@ -2845,23 +2836,18 @@ namespace myntra_clone_api.Data
     PromotionMainCategory = "Women",
     PromotionCategory = "Western Wear",
     PromotionSubCategory = "Dresses",
-                    PromotionDiscount="40",
-                    PromotionBrands=""
-                },
-                // blank  image
                 new Promotions()
                 {
                     PromoionId = 47,
                     PromotionType = "SHOP BY CATEGORY",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/46090f9c-e337-4a58-9d67-16bf4b977c6f1690787339358-Shop-By-Category_HP-4_32.jpg",
+                    PromotionImage="https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/" +
+                                   "assets/images/2023/7/31/46090f9c-e337-4a58-9d67-16bf4b977c6f1690787339358-Shop-By-Category_HP-4_32.jpg",
                     PromotionMainCategory="",
                     PromotionCategory="",
                     PromotionSubCategory="",
                     PromotionDiscount="",
                     PromotionBrands=""
                 },
-                new Promotions()
-                {
                     PromoionId = 48,
                     PromotionType = "SHOP BY CATEGORY",
                     PromotionImage="https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/89e0a0ee-225d-4880-a761-6aa895d252871690787338993-Shop-By-Category_HP-4_33.jpg",
@@ -2870,17 +2856,17 @@ namespace myntra_clone_api.Data
                     PromotionSubCategory="",
                     PromotionDiscount="30",
                     PromotionBrands=""
-                },
-                new Promotions()
-                {
-                    PromoionId = 49,
-                    PromotionType = "SHOP BY CATEGORY",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/82cdf918-9ad9-41fa-a5a7-c4c86fbad90c1690787338876-Shop-By-Category_HP-4_34.jpg",
-                    PromotionMainCategory="",
-                    PromotionCategory="Bags & Backpacks",
-                    PromotionSubCategory="",
-                    PromotionDiscount="30",
-                    PromotionBrands=""
+new Promotions()
+{
+    PromoionId = 49,
+    PromotionType = "SHOP BY CATEGORY",
+    PromotionImage="https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/82cdf918-9ad9-41fa-a5a7-c4c86fbad90c1690787338876-Shop-By-Category_HP-4_" + "34.jpg",
+    PromotionMainCategory="",
+    PromotionCategory="Bags & Backpacks",
+    PromotionSubCategory="",
+    PromotionDiscount="30",
+    PromotionBrands=""
+}
                 },
                 new Promotions()
 {
@@ -2944,23 +2930,25 @@ namespace myntra_clone_api.Data
                     PromotionSubCategory = "",
                     PromotionDiscount="50",
                     PromotionBrands="U.S. Polo Assn."
-                },
-                 new Promotions()
-                {
-                    PromoionId = 3,
-                    PromotionType = "MEDAL WORTHY BRANDS TO BAG",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/8/3/a9734bdc-8054-4806-8ab4-748d7dfdfe411691066316796-unnamed---2023-08-03T180830.165.png",
-                    PromotionMainCategory="Men",
-                    PromotionCategory="Footwear",
-                    PromotionSubCategory="",
-                    PromotionDiscount="50",
-                    PromotionBrands="ALDO"
+                 },
+                  new Promotions()
+                 {
+                     PromoionId = 3,
+                     PromotionType = "MEDAL WORTHY BRANDS TO BAG",
+                     PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/" +
+                                    "2023/8/3/a9734bdc-8054-4806-8ab4-748d7dfdfe411691066316796-unnamed---2023-08-03T180830.165.png",
+                     PromotionMainCategory="Men",
+                     PromotionCategory="Footwear",
+                     PromotionSubCategory="",
+                     PromotionDiscount="50",
+                     PromotionBrands="ALDO"
                 },
                  new Promotions()
                 {
                     PromoionId = 4,
                     PromotionType = "MEDAL WORTHY BRANDS TO BAG",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/8/3/bf39dcbb-1a94-481c-b943-43fca34bf0581691066296958-unnamed---2023-08-03T180811.304.png",
+                    PromotionImage = "https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/" +
+                                     "assets/images/2023/8/3/bf39dcbb-1a94-481c-b943-43fca34bf0581691066296958-unnamed---2023-08-03T180811.304.png",
                     PromotionMainCategory="Women",
                     PromotionCategory="Footwear",
                     PromotionSubCategory="",
@@ -3002,17 +2990,18 @@ namespace myntra_clone_api.Data
                     PromotionSubCategory="",
                     PromotionDiscount="35",
                     PromotionBrands=""
-                },
-                 new Promotions()
-                {
-                    PromoionId = 8,
-                    PromotionType = "MEDAL WORTHY BRANDS TO BAG",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/retaillabs/2023/8/4/71a69cc9-210a-4a95-b37f-78319c8f33761691141606256-image_png2064277310.png",
-                    PromotionMainCategory="Beauty",
-                    PromotionCategory="Skincare Bath & Body",
-                    PromotionSubCategory="",
-                    PromotionDiscount="35",
-                    PromotionBrands=""
+                 },
+                  new Promotions()
+                 {
+                     PromoionId = 8,
+                     PromotionType = "MEDAL WORTHY BRANDS TO BAG",
+                     PromotionImage = "https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/" +
+                                      "retaillabs/2023/8/4/71a69cc9-210a-4a95-b37f-78319c8f33761691141606256-image_png2064277310.png",
+                     PromotionMainCategory="Beauty",
+                     PromotionCategory="Skincare Bath & Body",
+                     PromotionSubCategory="",
+                     PromotionDiscount="35",
+                     PromotionBrands=""
                 },
                  new Promotions()
  {
@@ -3025,17 +3014,12 @@ namespace myntra_clone_api.Data
                     PromotionSubCategory = "",
                     PromotionDiscount="40",
                     PromotionBrands=""
-                },
-                 new Promotions()
-                {
-                    PromoionId = 10,
-                    PromotionType = "GRAND GLOBAL BRANDS",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/7aac1f32-1a1a-4ba6-924b-ee1c28553aed1690773011304-Nautica.png",
-                    PromotionMainCategory="Men",
-                    PromotionCategory="Topwear",
-                    PromotionSubCategory="",
-                    PromotionDiscount="50",
-                    PromotionBrands="Nautica"
+PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/7aac1f32-1a1a-4ba6-924b-ee1c28553aed1690773011304-Nautica.png",
+PromotionMainCategory="Men",
+PromotionCategory="Topwear",
+PromotionSubCategory="",
+PromotionDiscount="50",
+PromotionBrands="Nautica"
                 },
                  new Promotions()
                 {
@@ -3060,28 +3044,25 @@ namespace myntra_clone_api.Data
                     PromotionSubCategory = "",
                     PromotionDiscount="40",
                     PromotionBrands="Polo"
-                },
-                 new Promotions()
-                {
-                    PromoionId = 13,
-                    PromotionType = "GRAND GLOBAL BRANDS",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/044555a5-9987-4a06-8679-8aeb2dd963f91690773011013-boohooMan.png",
-                    PromotionMainCategory="Men",
-                    PromotionCategory="",
-                    PromotionSubCategory="",
-                    PromotionDiscount="40",
-                    PromotionBrands="boohooMAN"
-                },
-                 new Promotions()
-                {
-                    PromoionId = 14,
-                    PromotionType = "GRAND GLOBAL BRANDS",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/8/2/805eeb23-ec17-4b50-b798-1244133c02041690955797245-image_png_1993656242.png",
-                    PromotionMainCategory="Men",
-                    PromotionCategory="",
-                    PromotionSubCategory="",
-                    PromotionDiscount="30",
-                    PromotionBrands="Mango"
+{
+    PromotionImage = "https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/044555a5-9987-4a06-8679-8aeb2dd963f91690773011013-boohooMan.png",
+    PromotionMainCategory = "Men",
+    PromotionCategory = "",
+    PromotionSubCategory = "",
+    PromotionDiscount = "40",
+    PromotionBrands = "boohooMAN"
+}
+new Promotions()
+{
+    PromoionId = 14,
+    PromotionType = "GRAND GLOBAL BRANDS",
+    PromotionImage = "https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/8/2/805eeb23-ec17-4b50-b798-1244133c02041690955797245-image_png_1993656242.png",
+    PromotionMainCategory = "Men",
+    PromotionCategory = "",
+    PromotionSubCategory = "",
+    PromotionDiscount = "30",
+    PromotionBrands = "Mango"
+}
                 },
                  new Promotions()
  {
@@ -3142,17 +3123,18 @@ namespace myntra_clone_api.Data
                     PromotionSubCategory = "",
                     PromotionDiscount="30",
                     PromotionBrands=""
-                },
-                 new Promotions()
-                {
-                    PromoionId = 20,
-                    PromotionType = "SHOP BY CATEGORY",
-                    PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/da4059bf-14f1-4928-b5b9-be8719887b8e1690787339149-Shop-By-Category_HP-4_06.jpg",
-                    PromotionMainCategory="Women",
-                    PromotionCategory="Western Wear",
-                    PromotionSubCategory="",
-                    PromotionDiscount="40",
-                    PromotionBrands=""
+                 },
+                  new Promotions()
+                 {
+                     PromoionId = 20,
+                     PromotionType = "SHOP BY CATEGORY",
+                     PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/" +
+                                    "assets/images/2023/7/31/da4059bf-14f1-4928-b5b9-be8719887b8e1690787339149-Shop-By-Category_HP-4_06.jpg",
+                     PromotionMainCategory="Women",
+                     PromotionCategory="Western Wear",
+                     PromotionSubCategory="",
+                     PromotionDiscount="40",
+                     PromotionBrands=""
                 },
                  new Promotions()
                 {
