@@ -3011,13 +3011,10 @@ new Promotions()
                                      "assets/images/2023/7/31/81bcb28d-55f3-4d7b-bb5a-7cf7ee7fd8031690773011370-The_Collective.png",
                     PromotionMainCategory = "Men",
                     PromotionCategory = "Skincare Bath & Body",
-                    PromotionSubCategory = "",
-                    PromotionDiscount="40",
-                    PromotionBrands=""
-PromotionImage="https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/7aac1f32-1a1a-4ba6-924b-ee1c28553aed1690773011304-Nautica.png",
-PromotionMainCategory="Men",
-PromotionCategory="Topwear",
-PromotionSubCategory="",
+PromotionImage = "https://assets.myntassets.com/f_webp,w_163,c_limit,fl_progressive,dpr_2.0/assets/images/2023/7/31/7aac1f32-1a1a-4ba6-924b-ee1c28553aed1690773011304-Nautica.png",
+PromotionMainCategory = "Men",
+PromotionCategory = "Topwear",
+PromotionSubCategory = ""
 PromotionDiscount="50",
 PromotionBrands="Nautica"
                 },
