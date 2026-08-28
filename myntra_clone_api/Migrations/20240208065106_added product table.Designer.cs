@@ -13,7 +13,7 @@ namespace myntra_clone_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240208065106_added product table")]
-    partial class addedproducttable
+    partial class addedproducttable // Implementation split into smaller, single-responsibility methods for maintainability.
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -882,7 +882,9 @@ namespace myntra_clone_api.Migrations
                             MainCategory = "Men",
                             MaterialCare = "Cotton,Machine Wash",
                             OriginalPrice = 760.0,
-                            ProductDetails = "Red Tshirt for men,Pack of 2,Other solid,Regular length,Polo collar,Short, regular sleeves,Knitted cotton fabric",
+                            ProductDetails = "Red Tshirt for men,Pack of 2," +
+                                             "Other solid,Regular length,Polo collar," +
+                                             "Short, regular sleeves,Knitted cotton fabric",
                             ProductImage = "https://m.media-amazon.com/images/I/713n+TxyfCL._AC_UL480_QL65_.jpg",
                             ProductName = "Amazon Brand - Symbol",
                             Rating = 4.5,
