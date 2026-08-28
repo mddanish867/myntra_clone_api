@@ -4,6 +4,7 @@ using myntra_clone_api.Data;
 using myntra_clone_api.Models;
 using myntra_clone_api.Models.DTO;
 using myntra_clone_api.Services;
+using System.Collections.Generic;
 using System.Text.Json;
 
 namespace myntra_clone_api.Controllers
@@ -15,8 +16,8 @@ namespace myntra_clone_api.Controllers
         private readonly ApplicationDbContext _dbContext;
         private readonly IProductService _productService;
         private readonly IProductSpecificationService _productSpecification;
-        private readonly IMapper mapper;
-        private readonly ILogger<ProductsController> logger;
+        private readonly IMapper _mapper;
+        private readonly ILogger<ProductsController> _logger;
 
         public ProductsController(ApplicationDbContext dbContext,
             IProductService productService,
@@ -24,59 +25,44 @@ namespace myntra_clone_api.Controllers
             IMapper mapper,
             ILogger<ProductsController> logger)
         {
-            this._dbContext = dbContext;
-            this._productService = productService;
-            this._productSpecification = productSpecification;
-            this.mapper = mapper;
-            this.logger = logger;
+            _dbContext = dbContext;
+            _productService = productService;
+            _productSpecification = productSpecification;
+            _mapper = mapper;
+            _logger = logger;
         }
 
         // Get all Product
         [HttpGet]
-        public async Task<IActionResult> GetAllProducts()
+        public Task<IActionResult> GetAllProducts()
+        {
+            return HandleRequestAsync<Products, ProductsDto>(_productService.GetAllProductAsync, nameof(GetAllProducts));
+        }
+
+        [HttpGet("{productId}")]
+        public Task<IActionResult> GetProductSpecificationAsync(int productId)
+        {
+            return HandleRequestAsync<ProductSpecification, ProductSpecificationDto>(
+                () => _productSpecification.GetProductSpecificationAsync(productId),
+                nameof(GetProductSpecificationAsync));
+        }
+
+        private async Task<IActionResult> HandleRequestAsync<TSource, TDto>(
+            Func<Task<IEnumerable<TSource>>> serviceCall,
+            string actionName)
         {
             try
             {
-                //throw new Exception("This is custome exception");
-
-                // Get data from dtaabase - Products models
-                var allProducts = await _productService.GetAllProductAsync();               
-                // Log response
-                logger.LogInformation($"Finished GetAllProducts request data: {JsonSerializer.Serialize(allProducts)}");                       
-
-                // Using Automapper makes much clear code as compare to above method
-
-                var productDto = mapper.Map<List<ProductsDto>>(allProducts);
-                return Ok(productDto);
+                var data = await serviceCall();
+                _logger.LogInformation($"Finished {actionName} request data: {JsonSerializer.Serialize(data)}");
+                var dto = _mapper.Map<List<TDto>>(data);
+                return Ok(dto);
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, ex.Message);
-                throw;
-            }
-
-        }
-
-        [HttpGet]
-        [Route("{productId}")]
-        public async Task<IActionResult> GetProductSpecificationAsync(int productId)
-        {
-            try
-            {
-                var productSpecification = await _productSpecification.GetProductSpecificationAsync(productId);
-                // Log response
-                logger.LogInformation($"Finished GetProductSpecificationAsync request data: {JsonSerializer.Serialize(productSpecification)}");
-                // Using Automapper makes much clear code as compare to above method                
-                return Ok(mapper.Map<List<ProductSpecificationDto>>(productSpecification));
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, ex.Message);
+                _logger.LogError(ex, ex.Message);
                 throw;
             }
         }
-
-
-
     }
 }
