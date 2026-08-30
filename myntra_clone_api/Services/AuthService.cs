@@ -2,6 +2,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using myntra_clone_api.Twilio;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Twilio;
@@ -31,9 +32,7 @@ namespace myntra_clone_api.Services
 
         public string SendOTPViaSMS(string phoneNumber, string otp)
         {
-            // Set OTP Expiration time
-            var expirationTime = DateTime.Now.AddMilliseconds(10000);
-            _otpStorage[phoneNumber] = (otp, expirationTime);
+            SetOtpExpiration(phoneNumber, otp);
 
             var messageBody = $"your OTP for authentication: {otp}";
 
@@ -45,7 +44,8 @@ namespace myntra_clone_api.Services
                 throw new InvalidOperationException("Twilio credentials are not set in environment variables.");
             }
 
-            TwilioClient.Init(accountSid, authToken);
+            InitializeTwilioClient(accountSid, authToken);
+
             var messageResult = MessageResource.Create(
                 body: messageBody,
                 from: new PhoneNumber(_twilioConfig.PhoneNumber),
@@ -57,28 +57,20 @@ namespace myntra_clone_api.Services
 
         public bool VerifyOTP(string phoneNumber, string otp)
         {
-            if (_otpStorage.ContainsKey(phoneNumber))
+            if (!_otpStorage.TryGetValue(phoneNumber, out var storedOTP))
+                return false;
+
+            if (IsOtpExpired(storedOTP))
             {
-                if (_otpStorage.TryGetValue(phoneNumber, out var storedOTP))
-                {
-                    // Check if OTP is still valid
-                    if (DateTime.Now <= storedOTP.expirationTime)
-                    {
-                        if (storedOTP.otp == otp)
-                        {
-                            // Remove OTP after successful verification
-                            _otpStorage.Remove(phoneNumber);
-                            return true;
-                        }
-                    }
-                    else
-                    {
-                        // OTP has expired. remove it from storage
-                        _otpStorage.Remove(phoneNumber);
-                    }
-                }
+                _otpStorage.Remove(phoneNumber);
+                return false;
             }
-            return false;
+
+            if (storedOTP.otp != otp)
+                return false;
+
+            _otpStorage.Remove(phoneNumber);
+            return true;
         }
 
         public string GenerateToken(string phoneNumber)
@@ -101,6 +93,22 @@ namespace myntra_clone_api.Services
 
             var tokenHandler = new JwtSecurityTokenHandler();
             return tokenHandler.WriteToken(token);
+        }
+
+        private void SetOtpExpiration(string phoneNumber, string otp)
+        {
+            var expirationTime = DateTime.Now.AddMilliseconds(10000);
+            _otpStorage[phoneNumber] = (otp, expirationTime);
+        }
+
+        private bool IsOtpExpired((string otp, DateTime expirationTime) storedOTP)
+        {
+            return DateTime.Now > storedOTP.expirationTime;
+        }
+
+        private void InitializeTwilioClient(string accountSid, string authToken)
+        {
+            TwilioClient.Init(accountSid, authToken);
         }
     }
 }
