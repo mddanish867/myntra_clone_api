@@ -54,21 +54,21 @@ namespace myntra_clone_api.Data
                     MainCategoryId = 5,
                     MainCategoryName = "Beauty"
                 },
-            };
-            // Seed main category to database
-            modelBuilder.Entity<MainCategory>().HasData(mainCategory);
+var category = GetCategories();
 
-
-            // Seed the data for Category            
-            var category = new List<Category>
-            {
-                new Category()
-                {
-                    CategoryId = 1,
-                    CategoryName = "Topwear",
-                    MainCategory = "Men"
-
-                },
+List<Category> GetCategories()
+{
+    return new List<Category>
+    {
+        new Category()
+        {
+            CategoryId = 1,
+            CategoryName = "Topwear",
+            MainCategory = "Men"
+        },
+        // ... other categories
+    };
+}
                 new Category()
                 {
                     CategoryId = 2,
@@ -2506,21 +2506,12 @@ List<SubCategory> CreateSubCategories()
             //        MaterialCare = "Cotton,Machine Wash",
 
             //    },
-
-            //};
-            //// Seed main product to database
-            //modelBuilder.Entity<Products>().HasData(products);
-
+```csharp
             // Seed the data for product specification
-            var productSpecifications = new List<ProductSpecification>
-            {
-                new ProductSpecification()
-                {
-                    SpecificationId = 1,
-                    SpecificationKey = "Fabrick",
-                    SpecificationValue = "Cotton",
-                    ProductId = 1
-                },
+            // The full list of product specifications has been moved to a dedicated seeding method
+            // to reduce the size of OnModelCreating.
+            SeedProductSpecifications(modelBuilder);
+```
                 new ProductSpecification()
                 {
                     SpecificationId = 2,
