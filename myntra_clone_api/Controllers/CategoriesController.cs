@@ -34,11 +34,16 @@ namespace myntra_clone_api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllCategories()
         {
-            return await ExecuteAsync(async () =>
+            try
             {
                 var categoriesDto = await GetAllCategoriesInternalAsync();
                 return Ok(categoriesDto);
-            });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                throw;
+            }
         }
 
         private async Task<List<CategoriesDTO>> GetAllCategoriesInternalAsync()
@@ -52,11 +57,16 @@ namespace myntra_clone_api.Controllers
         [Route("all_category")]
         public async Task<IActionResult> GetCategoryAsync([FromQuery] string maincategory, [FromQuery] string category, [FromQuery] string subcategory)
         {
-            return await ExecuteAsync(async () =>
+            try
             {
                 var categoriesDto = await GetCategoryInternalAsync(maincategory, category, subcategory);
                 return Ok(categoriesDto);
-            });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                throw;
+            }
         }
 
         private async Task<IEnumerable<CategoriesDTO>> GetCategoryInternalAsync(string maincategory, string category, string subcategory)
@@ -70,19 +80,6 @@ namespace myntra_clone_api.Controllers
             }
 
             return _mapper.Map<IEnumerable<CategoriesDTO>>(categoryResponse);
-        }
-
-        private async Task<IActionResult> ExecuteAsync(Func<Task<IActionResult>> action)
-        {
-            try
-            {
-                return await action();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, ex.Message);
-                throw;
-            }
         }
     }
 }
