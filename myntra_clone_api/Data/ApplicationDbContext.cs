@@ -436,21 +436,23 @@ namespace myntra_clone_api.Data
                     CategoryName = "Top Brands",
                     MainCategory = "Beauty"
                 },
+var subCategory = CreateSubCategories();
+modelBuilder.Entity<SubCategory>().HasData(subCategory);
 
-            };
-            // Seed category to database
-            modelBuilder.Entity<Category>().HasData(category);
-
-            // Seed the data for SubCategory            
-            var subCategory = new List<SubCategory>
-            {
-                new SubCategory()
-                {
-                    SubCategoryId = 1,
-                    MainCategory = "Men",
-                    Category = "Topwear",
-                    SubCategoryName = "T-Shirts"
-                },
+List<SubCategory> CreateSubCategories()
+{
+    return new List<SubCategory>
+    {
+        new SubCategory()
+        {
+            SubCategoryId = 1,
+            MainCategory = "Men",
+            Category = "Topwear",
+            SubCategoryName = "T-Shirts"
+        },
+        // Add additional SubCategory entries here as needed
+    };
+}
                 new SubCategory()
                 {
                     SubCategoryId = 2,
