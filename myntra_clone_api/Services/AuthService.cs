@@ -11,13 +11,22 @@ using Twilio.Types;
 
 namespace myntra_clone_api.Services
 {
-    public class AuthService : IAuthService
+    // Interface for OTP service
+    public interface IOtpService
+    {
+        string GenerateOTP();
+        string SendOTPViaSMS(string phoneNumber, string otp);
+        bool VerifyOTP(string phoneNumber, string otp);
+    }
+
+    // Implementation of OTP service, extracted from AuthService
+    public class OtpService : IOtpService
     {
         private readonly TwilioConfig _twilioConfig;
         private readonly Random _random;
         private readonly Dictionary<string, (string otp, DateTime expirationTime)> _otpStorage;
 
-        public AuthService(IOptions<TwilioConfig> twilioConfig)
+        public OtpService(IOptions<TwilioConfig> twilioConfig)
         {
             _twilioConfig = twilioConfig.Value;
             _random = new Random();
@@ -73,6 +82,47 @@ namespace myntra_clone_api.Services
             return true;
         }
 
+        private void SetOtpExpiration(string phoneNumber, string otp)
+        {
+            var expirationTime = DateTime.Now.AddMilliseconds(10000);
+            _otpStorage[phoneNumber] = (otp, expirationTime);
+        }
+
+        private bool IsOtpExpired((string otp, DateTime expirationTime) storedOTP)
+        {
+            return DateTime.Now > storedOTP.expirationTime;
+        }
+
+        private void InitializeTwilioClient(string accountSid, string authToken)
+        {
+            TwilioClient.Init(accountSid, authToken);
+        }
+    }
+
+    public class AuthService : IAuthService
+    {
+        private readonly IOtpService _otpService;
+
+        public AuthService(IOtpService otpService)
+        {
+            _otpService = otpService;
+        }
+
+        public string GenerateOTP()
+        {
+            return _otpService.GenerateOTP();
+        }
+
+        public string SendOTPViaSMS(string phoneNumber, string otp)
+        {
+            return _otpService.SendOTPViaSMS(phoneNumber, otp);
+        }
+
+        public bool VerifyOTP(string phoneNumber, string otp)
+        {
+            return _otpService.VerifyOTP(phoneNumber, otp);
+        }
+
         public string GenerateToken(string phoneNumber)
         {
             var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
@@ -93,22 +143,6 @@ namespace myntra_clone_api.Services
 
             var tokenHandler = new JwtSecurityTokenHandler();
             return tokenHandler.WriteToken(token);
-        }
-
-        private void SetOtpExpiration(string phoneNumber, string otp)
-        {
-            var expirationTime = DateTime.Now.AddMilliseconds(10000);
-            _otpStorage[phoneNumber] = (otp, expirationTime);
-        }
-
-        private bool IsOtpExpired((string otp, DateTime expirationTime) storedOTP)
-        {
-            return DateTime.Now > storedOTP.expirationTime;
-        }
-
-        private void InitializeTwilioClient(string accountSid, string authToken)
-        {
-            TwilioClient.Init(accountSid, authToken);
         }
     }
 }
